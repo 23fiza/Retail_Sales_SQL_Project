@@ -54,34 +54,24 @@ Markdown
  📈 General Stats
 Total Sales Records
 
-sql
-Copy
-Edit
+
 SELECT COUNT(*) FROM retail_sales;
 Total Unique Customers
 
-sql
-Copy
-Edit
+
 SELECT COUNT(DISTINCT customer_id) FROM retail_sales;
 Total Unique Categories
 
-sql
-Copy
-Edit
+
 SELECT DISTINCT category FROM retail_sales;
 📅 Date-Based Analysis
 Sales on a specific date (e.g., 22-11-05)
 
-sql
-Copy
-Edit
+
 SELECT * FROM retail_sales WHERE sale_date = '22-11-05';
 Clothing sales (quantity > 3) in Nov 2022
 
-sql
-Copy
-Edit
+
 SELECT * FROM retail_sales 
 WHERE category = 'clothing'
 AND MONTH(sale_date) = 11 
@@ -90,9 +80,7 @@ AND quantity > 3;
 🧍 Customer & Demographics
 Top 5 Customers by Total Sales
 
-sql
-Copy
-Edit
+
 SELECT customer_id, SUM(total_sale) AS total_sale 
 FROM retail_sales
 GROUP BY customer_id
@@ -100,35 +88,27 @@ ORDER BY total_sale DESC
 LIMIT 5;
 Average Age of Beauty Category Buyers
 
-sql
-Copy
-Edit
+
 SELECT ROUND(AVG(age),0) AS Avg_age 
 FROM retail_sales
 WHERE category = 'Beauty';
 🛍️ Product Performance
 Sales by Category
 
-sql
-Copy
-Edit
+
 SELECT category, SUM(total_sale) AS total_sales, COUNT(*) AS total_orders 
 FROM retail_sales
 GROUP BY category;
 Unique Customers per Category
 
-sql
-Copy
-Edit
+
 SELECT category, COUNT(DISTINCT customer_id) AS unique_customer 
 FROM retail_sales 
 GROUP BY category;
 🕒 Time-Based Insights
 Best-Selling Month per Year
 
-sql
-Copy
-Edit
+
 WITH t1 AS (
     SELECT YEAR(sale_date) AS Year, 
            MONTH(sale_date) AS Month, 
@@ -142,9 +122,7 @@ FROM t1
 WHERE _rank = 1;
 Sales Distribution by Shift (Morning, Afternoon, Evening)
 
-sql
-Copy
-Edit
+
 WITH hourly_shift AS (
     SELECT *,
            CASE 
@@ -157,24 +135,5 @@ WITH hourly_shift AS (
 SELECT shift, COUNT(*) AS total_count 
 FROM hourly_shift 
 GROUP BY shift;
-🚀 How to Use
-Clone the repository:
 
-bash
-Copy
-Edit
-git clone https://github.com/yourusername/sql_project.git
-cd sql_project
-Load the SQL script into your local SQL environment.
-
-Run individual queries for analysis or modify them for further exploration.
-
-🧠 Insights and Business Use Cases
-Identify high-value customers
-
-Understand time-of-day sales trends
-
-Analyze product category performance
-
-Segment customers by demographics and behavior
 
